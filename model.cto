@@ -1,0 +1,70 @@
+/**
+* Sample business network definition.
+-Susan-
+*/
+namespace org.example.basic
+
+asset Property identified by PID {
+o String PID
+o String owner
+o Integer mktprice
+o String RegistrationDate
+o String PropertyType
+o String Location
+o String Status default= &#39;Registered&#39;
+o Boolean IntentForSale
+o Boolean Public
+o Boolean Private
+}
+
+asset PropertyListing identified by PLID {
+
+o String PLID
+o String owner
+o Integer mktprice
+o String RegistrationDate
+o String PropertyType
+o String Location
+o String Status default= &#39;IntentForSale&#39;
+}
+participant Buyer identified by Bname {
+o String Bname
+o String Bemail
+o Integer Aadhar
+o String BankName
+o String BankAddress
+o Integer AccNo
+o String IFSCCode
+o Integer BBalance
+}
+
+participant Seller identified by Sname {
+o String Sname
+o String Semail
+o Integer Aadhar
+o String BankName
+o String BankAddress
+
+o Integer AccNo
+o String IFSCCode
+o Integer SBalance
+o String SaleDeedDoc
+}
+participant Registrar identified by Rname {
+o String Rname
+o String Remail
+}
+transaction Created {
+o String PID
+--> Property cproperty
+}
+transaction Registered {
+o String PID
+--> PropertyListing rpropertylisting
+}
+transaction IntentForSale {
+--> Property property
+--> PropertyListing propertylisting
+--> Buyer buyer
+--> Seller seller
+}

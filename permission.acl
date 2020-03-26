@@ -1,0 +1,20 @@
+
+/**
+* Sample access control list.
+*/
+rule NetworkAdminUser {
+description: &quot;Grant business network administrators full access to user resources&quot;
+participant: &quot;org.hyperledger.composer.system.NetworkAdmin&quot;
+operation: ALL
+
+resource: &quot;**&quot;
+action: ALLOW
+}
+
+rule NetworkAdminSystem {
+description: &quot;Grant business network administrators full access to system resources&quot;
+participant: &quot;org.hyperledger.composer.system.NetworkAdmin&quot;
+operation: ALL
+resource: &quot;org.hyperledger.composer.system.**&quot;
+action: ALLOW
+}
